@@ -3,7 +3,7 @@ import json
 
 
 def fetch(username):
-    '''Fetch data from GitHub REST API in JSON format'''
+    '''Fetch data from GitHub REST API'''
     # Connect to GitHub API
     conn = http.client.HTTPSConnection("api.github.com")
 
@@ -13,21 +13,20 @@ def fetch(username):
     # Get response
     response = conn.getresponse().read()
 
-    # Parse JSON
-    activities = json.loads(response.decode("utf-8"))
-
     # Close connection
     conn.close()
 
-    return activities
+    return response
 
 
 def format_response(response):
     '''Format JSON response'''
-    print(response)
+    # Parse JSON
+    activities = json.loads(response.decode("utf-8"))
+    print('Output:')
+    print(activities)
 
 
 def display(username):
     '''Display the user's recent activity'''
-    response = fetch(username)
-    return format_response(response)
+    format_response(fetch(username))
