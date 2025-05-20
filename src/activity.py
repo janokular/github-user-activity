@@ -1,8 +1,9 @@
 import http.client
 import json
+import sys
 
 
-def fetch(username):
+def fetch(username: str):
     '''Fetch data from GitHub REST API'''
     # Connect to GitHub API
     conn = http.client.HTTPSConnection("api.github.com")
@@ -23,10 +24,20 @@ def format_response(response):
     '''Format JSON response'''
     # Parse JSON
     activities = json.loads(response.decode("utf-8"))
+
+    # Check if there are any recent activities
+    if not len(activities):
+        print('No recent events')
+        sys.exit()
+    
+    # Format the output
     print('Output:')
-    print(activities)
+    for activity in activities:
+        event = activity['type']
+        repo = activity['repo']['name']
+        print(f'- {event} {repo}')
 
 
-def display(username):
+def display(username: str):
     '''Display the user's recent activity'''
     format_response(fetch(username))
