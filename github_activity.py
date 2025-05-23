@@ -2,7 +2,7 @@
 
 
 import argparse
-from src.activity import display
+from src.fetch_activity import fetch
 
 
 def main():
@@ -12,7 +12,7 @@ def main():
 
     args = parser.parse_args()
 
-    display(args.USERNAME)
+    fetch(args.USERNAME)
 
 if __name__ == '__main__':
     main()
