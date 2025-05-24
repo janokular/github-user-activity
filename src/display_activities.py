@@ -8,7 +8,10 @@ def display(activities):
         keys = event_repo_key.split(',')
         match keys[0]:
             case 'CommitCommentEvent':
-                print(f'- (!) {keys[0]} {count} {keys[1]}')
+                if count == 1:
+                    print(f'- (!) {keys[0]} {count} {keys[1]}')
+                else:
+                    print(f'- (!) {keys[0]} {count} {keys[1]}')
             case 'CreateEvent':
                 if count == 1:
                     print(f'- Created {count} event in {keys[1]}')
