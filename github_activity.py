@@ -1,18 +1,21 @@
 #!/bin/env python3
 
 
-import argparse
-from src.fetch_activity import fetch
+from utils.parser import parse_arguments
+from utils.validate_username import validate
+from src.fetch_response import fetch
+from src.format_response import format
+from src.display_activities import display
 
 
 def main():
-    parser = argparse.ArgumentParser(description='Program used to fetch the recent activity of a GitHub user')
+    args = parse_arguments()
 
-    parser.add_argument('USERNAME')
+    USERNAME = args.USERNAME
 
-    args = parser.parse_args()
+    validate(USERNAME)
 
-    fetch(args.USERNAME)
+    display(format(fetch(USERNAME)))
 
 if __name__ == '__main__':
     main()

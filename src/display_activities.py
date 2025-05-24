@@ -1,57 +1,8 @@
-import http.client
-import json
-import sys
-import re
-
-
-def fetch(username: str):
-    '''Fetch data from GitHub REST API'''
-    # Check username before API call
-    # GitHub usernames can alphanumeric characters and dashes 
-    if not bool(re.search('^[a-zA-Z0-9-]*$', username)):
-        print('Invalid GitHub username')
-        sys.exit()
-
-    # Connect to GitHub API
-    conn = http.client.HTTPSConnection('api.github.com')
-
-    # Make a request
-    conn.request('GET', f'/users/{username}/events', headers={'User-Agent': 'github_activity.py'})
-
-    # Get a response
-    response = conn.getresponse()
-
-    # Check response status code 200 OK
-    if response.status != 200:
-        print('Something went wrong')
-        conn.close()
-        sys.exit()
-
-    # Parse JSON
-    response_body = response.read()
-    activities = json.loads(response_body.decode('utf-8'))
-
-    # Close a connection
-    conn.close()
-
-    # Check if there are any recent activities
-    if not bool(activities):
-        print('No recent events')
-        sys.exit()
-
-    # Dictionary for counting event occurrences
-    # 'event,repo': count
-    count_events = {}
-    
-    # Count the event occurrences
-    for event in activities:
-        event_repo_key = event['type'] + ',' + event['repo']['name']
-        count_events.setdefault(event_repo_key, 0)
-        count_events[event_repo_key] = count_events[event_repo_key] + 1
-
-    # Print the output
+def display(activities):
+    '''Display user's activities'''
     print('Output:')
-    for event_repo_key, count in count_events.items():
+
+    for event_repo_key, count in activities.items():
         # Split the keys separeted with ','
         # keys = ['event', 'repo']
         keys = event_repo_key.split(',')
