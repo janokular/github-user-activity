@@ -2,7 +2,7 @@
 
 
 from utils.parser import parse_arguments
-from utils.validate_username import validate
+from utils.username_validator import validate
 from src.fetch_response import fetch
 from src.format_response import format
 from src.display_activities import display
@@ -15,7 +15,11 @@ def main():
 
     validate(USERNAME)
 
-    display(format(fetch(USERNAME)))
+    response = fetch(USERNAME)
+
+    activities = format(response)
+
+    display(activities)
 
 if __name__ == '__main__':
     main()
