@@ -1,96 +1,47 @@
-def display(activities):
-    '''Display user's activities'''
-    print('Output:')
+from utils.word_pluralizer import pluralize
 
+
+def display(activities: dict):
+    '''Display the activities from a dictionary {'event,repo': count}'''
+    print('Output:')
     for event_repo_key, count in activities.items():
-        # Split the keys separeted with ','
-        # keys = ['event', 'repo']
         keys = event_repo_key.split(',')
-        match keys[0]:
+        event = keys[0]
+        repo = keys[1]
+        match event:
             case 'CommitCommentEvent':
-                if count == 1:
-                    print(f'- (!) {keys[0]} {count} {keys[1]}')
-                else:
-                    print(f'- (!) {keys[0]} {count} {keys[1]}')
+                print(f'- (!) {event} {count} {repo}')
             case 'CreateEvent':
-                if count == 1:
-                    print(f'- Created {count} event in {keys[1]}')
-                else:
-                    print(f'- Created {count} events in {keys[1]}')
+                print(f'- Created {count} {pluralize("event", count)} in {repo}')
             case 'DeleteEvent':
-                if count == 1:
-                    print(f'- (!) {keys[0]} {count} {keys[1]}')
-                else:
-                    print(f'- (!) {keys[0]} {count} {keys[1]}')
+                print(f'- (!) {event} {count} {repo}')
             case 'ForkEvent':
-                if count == 1:
-                    print(f'- (!) {keys[0]} {count} {keys[1]}')
-                else:
-                    print(f'- (!) {keys[0]} {count} {keys[1]}')
+                print(f'- (!) {event} {count} {repo}')
             case 'GollumEvent':
-                if count == 1:
-                    print(f'- (!) {keys[0]} {count} {keys[1]}')
-                else:
-                    print(f'- (!) {keys[0]} {count} {keys[1]}')
+                print(f'- (!) {event} {count} {repo}')
             case 'IssueCommentEvent':
-                if count == 1:
-                    print(f'- (!) {keys[0]} {count} {keys[1]}')
-                else:
-                    print(f'- (!) {keys[0]} {count} {keys[1]}')
+                print(f'- (!) {event} {count} {repo}')
             case 'IssuesEvent':
-                if count == 1:
-                    print(f'- (!) {keys[0]} {count} {keys[1]}')
-                else:
-                    print(f'- (!) {keys[0]} {count} {keys[1]}')
+                print(f'- (!) {event} {count} {repo}')
             case 'MemberEvent':
-                if count == 1:
-                    print(f'- (!) {keys[0]} {count} {keys[1]}')
-                else:
-                    print(f'- (!) {keys[0]} {count} {keys[1]}')
+                print(f'- (!) {event} {count} {repo}')
             case 'PublicEvent':
-                if count == 1:
-                    print(f'- (!) {keys[0]} {count} {keys[1]}')
-                else:
-                    print(f'- (!) {keys[0]} {count} {keys[1]}')
+                print(f'- (!) {event} {count} {repo}')
             case 'PullRequestEvent':
-                if count == 1:
-                    print(f'- (!) {keys[0]} {count} {keys[1]}')
-                else:
-                    print(f'- (!) {keys[0]} {count} {keys[1]}')
+                print(f'- (!) {event} {count} {repo}')
             case 'PullRequestReviewEvent':
-                if count == 1:
-                    print(f'- (!) {keys[0]} {count} {keys[1]}')
-                else:
-                    print(f'- (!) {keys[0]} {count} {keys[1]}')
+                print(f'- (!) {event} {count} {repo}')
             case 'PullRequestReviewCommentEvent':
-                if count == 1:
-                    print(f'- (!) {keys[0]} {count} {keys[1]}')
-                else:
-                    print(f'- (!) {keys[0]} {count} {keys[1]}')
+                print(f'- (!) {event} {count} {repo}')
             case 'PullRequestReviewThreadEvent':
-                if count == 1:
-                    print(f'- (!) {keys[0]} {count} {keys[1]}')
-                else:
-                    print(f'- (!) {keys[0]} {count} {keys[1]}')
+                print(f'- (!) {event} {count} {repo}')
             case 'PushEvent':
-                if count == 1:
-                    print(f'- Pushed {count} commit into {keys[1]}')
-                else:
-                    print(f'- Pushed {count} commits into {keys[1]}')
+                print(f'- Pushed {count} {pluralize("commit", count)} into {repo}')
             case 'ReleaseEvent':
-                if count == 1:
-                    print(f'- (!) {keys[0]} {count} {keys[1]}')
-                else:
-                    print(f'- (!) {keys[0]} {count} {keys[1]}')
+                print(f'- (!) {event} {count} {repo}')
             case 'SponsorshipEvent':
-                if count == 1:
-                    print(f'- (!) {keys[0]} {count} {keys[1]}')
-                else:
-                    print(f'- (!) {keys[0]} {count} {keys[1]}')
+                print(f'- (!) {event} {count} {repo}')
             case 'WatchEvent':
-                if count == 1:
-                    print(f'- (!) {keys[0]} {count} {keys[1]}')
-                else:
-                    print(f'- (!) {keys[0]} {count} {keys[1]}')
+                print(f'- (!) {event} {count} {repo}')
             case _:
                 print(f'- Unsupported Event')
