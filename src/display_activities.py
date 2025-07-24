@@ -6,8 +6,7 @@ def display(activities: dict):
     print('Output:')
     for event_repo_key, count in activities.items():
         keys = event_repo_key.split(',')
-        event = keys[0]
-        repo = keys[1]
+        event, repo = keys[0], keys[1]
         match event:
             case 'CommitCommentEvent':
                 print(f'- (!) {event} {count} {repo}')
