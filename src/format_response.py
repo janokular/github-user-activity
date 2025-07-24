@@ -1,18 +1,10 @@
-import sys
-
-
-def format(response):
-    '''Format JSON response'''
-    # Dictionary for counting event occurrences
-    # 'event,repo': count
+def format(response: list):
+    '''
+    Format the response by counting events inside each repository\n
+    and return it as a dictionary {'event,repo': count}
+    '''
     activities = {}
-
-    # Check if response is not empty
-    if not bool(response):
-        print('No recent events')
-        sys.exit()
     
-    # Count the event occurrences
     for event in response:
         event_repo_key = event['type'] + ',' + event['repo']['name']
         activities.setdefault(event_repo_key, 0)
