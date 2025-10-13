@@ -16,9 +16,7 @@ def main():
     validate(USERNAME)
 
     response = fetch(USERNAME)
-
     activities = format(response)
-
     display(activities)
 
 if __name__ == '__main__':

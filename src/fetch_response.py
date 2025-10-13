@@ -8,10 +8,7 @@ USER_AGENT = 'github_activity.py'
 
 
 def fetch(username: str):
-    '''
-    Fetch data from the GitHub REST API\n
-    and return it as a list
-    '''
+    '''Fetch data from the GitHub REST API and return it as a list'''
     conn = http.client.HTTPSConnection(GITHUB_API_URL)
 
     conn.request('GET', f'/users/{username}/events', headers={'User-Agent': USER_AGENT})
@@ -30,7 +27,7 @@ def fetch(username: str):
     response = json.loads(response_body.decode('utf-8'))
 
     if not response:
-        print('warning: No recent events, response is empty')
+        print('No recent events, response is empty')
         sys.exit()
 
     return response
