@@ -1,0 +1,6 @@
+[project]
+name = "github_activity"
+version = "0.1.0"
+
+[project.scripts]
+github_activity = "github_activity.cli:main"
