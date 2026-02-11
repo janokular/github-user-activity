@@ -1,6 +1,6 @@
 from argparse import ArgumentParser
 
-from .command.request_handler import request_handler
+from .handlers.request_handler import request_handler
 
 
 def build_parser() -> ArgumentParser:
