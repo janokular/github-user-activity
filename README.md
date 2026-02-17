@@ -1,4 +1,4 @@
-## GitHub user activity
+## GitHub User Activity
 ```
 # Initial setup
 # Create and activate the virtual environment
