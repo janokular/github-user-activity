@@ -1,6 +1,6 @@
 ## GitHub User Activity
+### Initial setup
 ```
-# Initial setup
 # Create and activate the virtual environment
 python3 -m venv .venv
 . ./.venv/bin/activate
@@ -14,6 +14,8 @@ deactivate
 # Uninstallation
 pip3 uninstall github_activity
 ```
+
+### Running the application
 ```
 # Fetch GitHub user activity
 github_activity USERNAME
